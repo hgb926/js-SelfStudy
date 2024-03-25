@@ -1,14 +1,9 @@
 
 
-function solution(myString) {
-  var answer = '';
-  for (let i = 0; i < myString.length; i++) {
-    if (myString[i] === `a`) {
-      
-    }
+function solution(strlist) {
+  var answer = [];
+  for (let i = 0; i < strlist.length; i++) {
+    answer.unshift(strlist[i].length);
   }
   return answer;
 }
-
-
-

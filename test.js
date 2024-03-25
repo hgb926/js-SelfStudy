@@ -1,7 +1,7 @@
 var upn = 50;
 var donwn = 1;
 var rn = Math.floor(Math.random() * 50) + 1 // 난수 생성
- 
+var count = 0;
 while (true) {
   while (true) {
     var input = +prompt(`[ 1 ~ 50 사이의 무작위 숫자를 ${count}번 안에 맞춰보세요!! ]`)
