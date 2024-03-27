@@ -1,23 +1,44 @@
-var upn = 50;
-var donwn = 1;
-var rn = Math.floor(Math.random() * 50) + 1 // 난수 생성
-var count = 0;
-while (true) {
-  while (true) {
-    var input = +prompt(`[ 1 ~ 50 사이의 무작위 숫자를 ${count}번 안에 맞춰보세요!! ]`)
-    if (input > rn) {
-        --count;
-        upn = input;
-        alert(`DOWN!! 기회가 ${count}번 남았습니다.\n[${donwn} ~ ${upn}]`)
-
-      } else if (input < rn) {
-        --count;
-        donwn = input;
-        alert(`UP!! 기회가 ${count}번 남았습니다.\n[${donwn} ~ ${upn}]`)
-
-      } else {
-        alert(`딩동댕!`)
-        break;
+var articles = {
+  totalCount: 25578,  //총 게시물 수
+  admin: 'abc1234', //게시판 관리자 아이디
+  page: 2558, //총 페이지 수
+  articleList: [ 
+      // 게시물 목록
+      {
+          bno: 3, //글번호
+          title: '가위바위보', //글제목
+          writer: '김짱껨뽀',  //작성자
+          content: '다덤벼 ^^', //글내용
+          viewCount: 53, //조회수
+          recomm: 10, //추천수
+          regDate: '21-12-07' //작성일자
+      }, 
+      {
+          bno: 2, //글번호
+          title: '노는게', //글제목
+          writer: '뽀로로',  //작성자
+          content: '제일조와~~~', //글내용
+          viewCount: 253, //조회수
+          recomm: 11, //추천수
+          regDate: '21-12-06' //작성일자
+      }, 
+      {
+          bno: 1, //글번호
+          title: '아멘', //글제목
+          writer: '개신교신자',  //작성자
+          content: '할렐루야', //글내용
+          viewCount: 23, //조회수
+          recomm: 5, //추천수
+          regDate: '21-12-05' //작성일자
       }
-    }
-  }
+  ]
+};
+
+
+// console.log(articles.articleList[0]);
+// console.log(articles.articleList[2].content);
+
+// console.log(articles.articleList[0]['recomm']);
+
+articles.articleList[0]['height'] = 150;
+console.log(articles.articleList[0]);
