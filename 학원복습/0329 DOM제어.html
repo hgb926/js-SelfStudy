@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    body {
+      width: 100%;
+    }
+    div.wrap {
+      width: 50%;
+      height: 80vh;
+      margin: 50px 25%;
+      background: lightgrey;
+      position: relative;
+     
+    }
+    ul.list {
+      height: 80%;
+      position: relative;
+      top: 10%;
+      flex-direction: row;
+      flex-wrap: wrap;
+     display: flex;
+      justify-content: space-between;
+    }
+    ul.list li.menu {
+     width: 25%;
+      height: 15%;
+      /* border: 1px solid #000; */      
+    }
+
+    
+
+  </style>
+</head>
+<body>
+  
+  <div class="wrap">
+    <ul class="list">
+      <li class="menu">menu1</li>
+      <li class="menu">menu2</li>
+      <li class="menu">menu3</li>
+      <li class="menu">menu4</li>
+      <li class="menu">menu5</li>
+      <li class="menu">menu6</li>
+      <li class="menu">menu7</li>
+    </ul>
+  </div>
+
+  <script>
+    const $dot = document.querySelectorAll('ul.list')
+    
+
+    const $list = document.querySelectorAll('ul.list li.menu')
+    $list.forEach(i => i.style.color = 'green')
+    $list.forEach(i => i.style.border = '1px solid grey')
+    $list.forEach(i => i.style.borderRadius = '50%')
+    $list.forEach(i => i.style.textAlign = 'center')
+    $list.forEach(i => i.style.listStyle = 'none')
+    $list.forEach(i => i.style)
+    
+    const $firstChild = document.querySelector('ul.list li.menu:first-child')
+    $firstChild.style.padding = '100px'
+
+  </script>
+
+
+
+
+</body>
+</html>
