@@ -1,17 +1,15 @@
 function solution(arr) {
-  const result1 = arr
-  .map(n => n *2)
-  for (const i of result1) {
-    if (result1[i] % 2 === 0 && result1[i] > 50) {
-      result1[i] / 2;
+  let result = [];
+  for (const num of arr) {
+    if (num % 2 === 0 && num > 50) {
+      result.push(num / 2);
+    } else if (num % 2 === 1 && num < 50) {
+      result.push(num * 2)
     } else {
-      result1[i] * 2
+      result.push(num);
     }
-  }
-
-  return result1
+  } 
+  return result;
 }
-
-// 미해결
-
-console.log(solution([1,2,3,100]));
+// 미해결, 제한사항
+console.log(solution([1, 3, 4, 6, 25, 28]));
