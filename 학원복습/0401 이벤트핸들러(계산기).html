@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrap {
+        width: 24%;
+        height: 70vh;
+        border: 1px solid #000;
+        margin: 100px;
+        border-radius: 40px;
+        display: flex;
+        flex-direction: column;
+        background: #000000f1;
+        color: white;
+        text-shadow: 2px 2px 2px gray;
+        padding: 0 10px 5px 10px;
+      }
+      .top {
+        padding: 20%;
+        border-top-right-radius: 40px;
+        border-top-left-radius: 40px;
+        position: relative;
+        text-shadow: 1px 1px 1px gray;
+      }
+      .top .num {
+        position: absolute;
+        /* border: 1px solid #000; */
+        font-size: 2.5em;
+        right: 20px;
+      }
+      body .wrap .line {
+        display: flex;
+        height: 22%;
+      }
+
+      #zero {
+        width: 50%;
+      }
+      body .wrap .line:last-child {
+        border-bottom-left-radius: 40px;
+      }
+      body .wrap .line .button {
+        text-shadow: 1px 1px 1px gray;
+        width: 25%;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        border-radius: 50%;
+        margin: 5px;
+        font-size: 1.3em;
+        border: 1px solid #000;
+
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .button:active {
+        transform: scale(0.95); /* 클릭 시 버튼의 크기를 0.95배로 축소합니다. */
+      }
+      .light {
+        background: lightgray;
+        color: #000;
+      }
+      .yellow {
+        background: orange;
+        color: white;
+      }
+      .gray {
+        background: gray;
+        color: white;
+        text-shadow: 1px 1px 1px gray;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="top"><div class="num topNum">0</div></div>
+      <div class="line">
+        <button class="button light remove">AC</button>
+        <button class="button light">+/-</button>
+        <button class="button light">%</button>
+        <button class="button yellow">/</button>
+      </div>
+      <div class="line">
+        <button class="button gray num">7</button>
+        <button class="button gray num">8</button>
+        <button class="button gray num">9</button>
+        <button class="button yellow">X</button>
+      </div>
+      <div class="line">
+        <button class="button gray num">4</button>
+        <button class="button gray num">5</button>
+        <button class="button gray num">6</button>
+        <button class="button yellow">-</button>
+      </div>
+      <div class="line">
+        <button class="button gray num">1</button>
+        <button class="button gray num">2</button>
+        <button class="button gray num">3</button>
+        <button class="button yellow plus">+</button>
+      </div>
+      <div class="line">
+        <button class="button gray num" id="zero">0</button>
+        <button class="button gray">.</button>
+        <button class="button yellow getResult">=</button>
+      </div>
+    </div>
+
+    <script>
+      const $nums = [...document.querySelectorAll(".num")];
+      const $topNum = document.querySelector(".topNum");
+      const $plus = document.querySelector(".plus");
+
+      function input(event) {
+        const clickedNum = event.target.textContent;
+        $topNum.textContent += clickedNum;
+      }
+
+      $nums.forEach((num) => {
+        $topNum.textContent = "";
+        num.addEventListener("click", input);
+      });
+
+      function input(event) {
+        const clickedNum = event.target.textContent;
+        $topNum.textContent += clickedNum;
+      }
+
+      $nums.forEach((num) => {
+        num.addEventListener("click", input);
+      });
+
+      function add() {
+        // 현재 표시된 숫자와 새로운 숫자를 더해서 결과를 topNum에 표시
+        const currentNum = parseFloat($topNum.textContent);
+        // 이전에 입력한 숫자는 필요 없으므로 삭제
+        $topNum.textContent = "";
+        // 더한 결과를 표시
+        $topNum.textContent = currentNum + currentNum;
+      }
+
+      $plus.addEventListener("click", add);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 20%;
+        margin: 100px ;
+        border: 1px solid #000;
+        display: flex;
+        flex-direction: column;
+        padding: 50px;
+      }
+      .box > * {
+        padding: 10px 0;
+      }
+      .box > div {
+        font-size: 12px;
+        display: none;
+      }
+
+      .open {
+        display: block;
+      }
+      button {
+        width: 60%;
+        margin-top: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1em;
+        border-radius: 30px;
+        box-shadow: 2px 2px 2px gray;
+      }
+      a {
+        display: none;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <input type="text" class="id" placeholder="아이디를 입력하세요." />
+      <div class="idWrong">최소 8글자 이상입니다.</div>
+      <input type="password" class="pw first" placeholder="비밀번호를 입력하세요." />
+      <input type="password" class="pw second" placeholder="비밀번호 확인" />
+      <div class="pwWrong">비밀번호가 일치합니다.</div>
+      <a href="./0401 이벤트핸들러(계산기).html" target="_blank" class="atag"><button>회원가입</button></a>
+    </div>
+
+    <script>
+      const $box = document.querySelector('.box');
+      const $idInput = document.querySelector('.id');
+      const $idWrong = document.querySelector('.idWrong');
+      const $first = document.querySelector('.first');
+      const $second = document.querySelector('.second');
+      const $pwWrong = document.querySelector('.pwWrong');
+      const $go = document.querySelector('.atag')
+
+      function open() {
+        if ($idInput.value.length < 8) {
+          $idWrong.style.display = 'block'
+        } else if ($idInput.value.length >= 8){
+          $idWrong.style.display = 'none'
+        } else if ($idInput.value.length === 0) {
+          $idWrong.style.display = 'none'
+        }
+      }
+      $idInput.addEventListener('input', open)
+
+      function checkPw() {
+        if ($first.value !== $second.value || $first.length < $second.length) {
+          $pwWrong.textContent = '비밀번호가 일치하지 않습니다.'
+          $pwWrong.style.display = 'block'
+        } else if ($first.value === $second.value) {
+          $pwWrong.textContent = '비밀번호가 일치합니다!'
+          $go.style.display = 'block'
+        }
+      }
+      $second.addEventListener('input', checkPw)
+
+    </script>
+  </body>
+</html>
