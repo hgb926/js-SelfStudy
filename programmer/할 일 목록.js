@@ -1,10 +1,12 @@
 function solution(todo_list, finished) {
-  for (let todo of finished) {
-    if (finished[todo] === true) {
-      todo_list.pop()
+  let result = [];
+  for (let i = 0; i < finished.length; i++) {
+    if (finished[i] === false) {
+      result.push(todo_list[i])
     }
   }
-  return todo_list;
+  return result;
 }
 
-console.log(solution(["problemsolving", "practiceguitar", "swim", "studygraph"], [true, false, true, false]));
+console.log(solution(["problemsolving", "practiceguitar",
+ "swim", "studygraph"], [true, false, true, false]));
