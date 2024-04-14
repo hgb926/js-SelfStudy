@@ -1,20 +1,23 @@
 function solution(arr1, arr2) {
-  if (arr1.length < arr2.length) {
+  if (arr1.length > arr2.length) {
+    return 1;
+  } else if (arr1.length < arr2.length) {
     return -1;
   } else if (arr1.length === arr2.length) {
-    let total1 = 0;
-    let total2 = 0;
-    for(let i = 0; i < arr1.length; i++) {
-      total1 += arr1[i];
+    let one = 0;
+    let two = 0;
+    for(let n of arr1) {
+      one += n;
     }
-    for(let i = 0; i < arr2.length; i++) {
-      total2 += arr2[i];
+    for(let k of arr2) {
+      two += k;
     }
-    if ( total1 === total2) {
-      return 0;
+    if (two > one) { // 2가 1보다 크다면
+      return -1
+    } else if (two < one) {
+      return 1
     } else {
-      return 1;
+      return 0;
     }
   }
 }
-// 제한사항 미준수
