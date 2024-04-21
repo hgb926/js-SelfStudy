@@ -1,10 +1,14 @@
 function solution(myString, pat) {
-  for (let i = 0; i < myString.length; i++) {
-    if (myString[i] === 'A') {
-      myString[i] = 'B';
-    } else if (myString[i] === 'B') {
-      myString[i] = 'A';
+  const swappedString = myString.split('').map(char => {
+    if (char === 'A') {
+      return 'B';
+    } else if (char === 'B') {
+      return 'A';
     }
-  }
-  return myString.includes(pat) ? 0 : 1;
+    return char;
+  }).join('');
+
+  return swappedString.includes(pat) ? 1 : 0;
 }
+
+console.log(solution("ABAB","ABAB"));
