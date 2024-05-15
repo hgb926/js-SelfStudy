@@ -1,19 +1,14 @@
 function solution(absolutes, signs) {
-  var sum = 0;
-  const result = [];
-  for (let i = 0; i < absolutes.length; i++) {
-    if (signs[i] === false) {
-      absolutes[i] = absolutes[i] - absolutes[i] * 2;
-      result.push(absolutes[i]);
-    } else {
-      result.push(absolutes[i])
+    var answer = 0;
+    for (let i = 0; i < absolutes.length; i++) {
+        if (signs[i]) {
+            answer += absolutes[i]
+        } else {
+            answer -= absolutes[i]
+        }
     }
-    for (let i = 0; i < result.length; i++) {
-      sum += result[i];
-    }
-  }
-  return sum;
+    return answer;
 }
-console.log(solution([1, 2, 3], [true, false, true]));
 
-// 미해결
+let number = solution([4,7,12],[true,false,true]);
+console.log(number)

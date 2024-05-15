@@ -54,34 +54,29 @@ const traders = [
 // 연습 1: 2022년에 발생한 모든 거래를 찾아 // filter
 //   거래자 정보(이름, 도시)를 배열에 매핑해주세요 // map
 
-const allTradeIn2022 = traders
-    .filter(trs => trs.year === 2022) 
+const question1 = traders
+    .filter(trs => trs.year === 2022)
     .map(trs => trs.trader)
-    console.log(allTradeIn2022);
+
 
 
 // 연습 2: 거래자가 근무하는 모든 도시이름을 배열에 담아주세요. // map
 
-const allCityNamefake = traders
-    .map(trs => trs.trader.city);
-    allCityName = [...new Set(allCityNamefake)]
-    console.log(allCityName);
-
+const question2 = traders
+    .map(t => t.trader.city)
+console.log(question2)
 
 // 연습 3: 대전에 근무하는 // filter
 // 모든 거래자를 찾아 거래자정보(이름, 도시)를 배열에 매핑해주세요. // map
 
-const workInDaejeon = traders
-    .filter(trs => trs.trader.city === '대전')
-    .map(trs => trs.trader)
-    console.log(workInDaejeon);
+
 
 // 연습 4: 모든 거래자의 이름을 배열에 모아주세요. // map
 
-const allNamedemo = traders
+const question3 = traders
     .map(trs => trs.trader.name)
-const allName = [...new Set(allNamedemo)]
-    console.log(allName);
+console.log(question3)
+
 // 연습 5: 서울에 사는 거래자(filter)의 모든 거래액(map)의 총합 출력(foreach). 
 
 const totalPrice = traders
@@ -91,7 +86,13 @@ const totalPrice = traders
     console.log(totalPrice);
 //1. **2023년에 대전에서 발생한 모든 거래의 총액을 계산해주세요.**
 
-
+const traderInDaejeon = traders
+    .filter(trs => trs.trader.city === '대전')
+let sum = 0;
+for (let n of traderInDaejeon) {
+  sum += n.value
+}
+console.log(sum)
 
 
 //2. **부산에서 거래한 모든 거래자의 이름을 배열에 담아 출력해주세요.** // filter
