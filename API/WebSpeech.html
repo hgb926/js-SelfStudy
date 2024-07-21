@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음성 인식 기능</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .hints {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #666;
+        }
+        .output {
+            padding: 50px;
+            border: black 1px solid;
+            width: 50%;
+            margin: 0 auto;
+            border-radius: 30px;
+        }
+        .delBtn {
+            margin-top: 50px;
+            background: lightskyblue;
+            color: white;
+            padding: 20px 30px;
+            border: white 1px solid;
+            font-size: 20px;
+            border-radius: 40px;
+        }
+
+    </style>
+</head>
+<body>
+<h1>음성 인식 기능</h1>
+<p>여기를 <a href="#">클릭</a>한 후 말하면 받아 적습니다.</p>
+<div>
+    <p class="output"><em></em></p>
+    <button type="button" class="delBtn">내역 삭제</button>
+</div>
+<script>
+
+    // 이거 게시판 검색으로 사용
+
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+
+    const $output = document.querySelector('.output')
+    const $delBtn = document.querySelector('.delBtn');
+
+    recognition.continuous = false;
+    recognition.lang = 'ko-KR';
+    recognition.interimResults = true; // 중간 결과를 활성화
+
+    const diagnostic = document.querySelector('.output');
+    let finalTranscript = ''; // 최종 결과를 저장할 변수
+
+    document.body.onclick = () => {
+        recognition.start();
+        console.log('음성 명령을 받을 준비가 되었습니다.');
+    };
+
+    recognition.onresult = (event) => {
+        let interimTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+                finalTranscript += event.results[i][0].transcript.trim() + ' ';
+            } else {
+                interimTranscript += event.results[i][0].transcript;
+            }
+        }
+        diagnostic.textContent = finalTranscript + interimTranscript;
+        $delBtn.addEventListener('click', e => {
+            $output.innerHTML = '';
+            diagnostic.textContent = '';
+        })
+    };
+
+    recognition.onspeechend = () => {
+        recognition.stop();
+    };
+
+    recognition.onnomatch = (event) => {
+        diagnostic.textContent = "해당 음성을 인식하지 못했습니다.";
+    };
+
+    recognition.onerror = (event) => {
+        diagnostic.textContent = `인식 오류 발생: ${event.error}`;
+    };
+</script>
+</body>
+</html>
