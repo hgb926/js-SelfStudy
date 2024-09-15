@@ -1,15 +1,16 @@
-function solution(arr) {
-  let result = [];
-  for (const num of arr) {
-    if (num % 2 === 0 && num > 50) {
-      result.push(num / 2);
-    } else if (num % 2 === 1 && num < 50) {
-      result.push(num * 2)
-    } else {
-      result.push(num);
+const solution = arr => {
+    let result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] >= 50 && arr[i] % 2 === 0) {
+            result.push(arr[i] / 2);
+        } else if (arr[i] < 50 && arr[i] % 2 === 1) {
+            result.push(arr[i] * 2);
+        } else {
+            result.push(arr[i]);
+        }
     }
-  } 
-  return result;
+    return result;
 }
+
 // 미해결, 제한사항
-console.log(solution([1, 3, 4, 6, 25, 28]));
+console.log(solution([1, 2, 3, 100, 99, 98]));
