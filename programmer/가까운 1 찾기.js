@@ -1,11 +1,10 @@
 function solution(arr, idx) {
-  var answer = 0;
   for (let i = idx; i < arr.length; i++) {
-    if (idx < i && arr[i] > 0) {
-      answer = i
-    } else {
-      answer = -1
+    if (arr[i] === 1) {
+      return i
     }
   }
-  return answer;
+  return  -1
 }
+
+console.log(solution([0,0,0,1], 1))
