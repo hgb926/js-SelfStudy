@@ -1,8 +1,13 @@
 function solution(arr1, arr2) {
-  var answer = [[]];
+  var answer = [];
   for (let i = 0; i < arr1.length; i++) {
-    answer[i].push(arr1[i] + arr2[i])
-  };
+    var row = [];
+    for (let j = 0; j < arr1[i].length; j++) {
+      row.push(arr1[i][j] + arr2[i][j]);
+    }
+    answer.push(row);
+  }
   return answer;
 }
-console.log(solution([[1,2],[2,3]], [[3,4],[5,6]]));
+
+console.log(solution([[1],[2]], [[3],[4]])); // [[4], [6]]
