@@ -1,0 +1,1 @@
+const solution = n => [...n.toString(2)].filter(n => n != 0).length;
