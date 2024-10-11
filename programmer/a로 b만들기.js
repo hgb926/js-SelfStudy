@@ -1,7 +1,4 @@
-function solution(str1, str2) {
-  let result = str1 + str2;
-  result.replace(' ', '');
-  return result;
-}
+const solution = (before, after) => +([...after].reverse().join("") === before)
 
-console.log(solution(`hello`, `wolrd`));
+console.log(solution(`olleh`, `hello`));
+console.log(solution('allpe', 'apple'))

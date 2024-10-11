@@ -1,13 +1,7 @@
 const solution = my_string => {
-    let result = 0;
-    let extract = ''
-    for (let i = 0; i < my_string.length; i++) {
-        if (!isNaN(my_string[i])) {
-            extract += my_string[i];
-        }
-        result += extract
-    }
-    return result
+    const result = [...my_string].filter(s => 65 > s.charCodeAt());
+    console.log(result)
 }
-// 미해결
 console.log(solution("aAb1B2cC34oOp"))
+// let a = 'e'
+// console.log(a.charCodeAt())
