@@ -1,10 +1,13 @@
 const solution = (N, stages) => {
-    // 객체 매핑
+    // 실패율 매핑
+    // 총 도전자 객체, 성공하지못한 자 객체
     let stageMap = {};
     stages.sort((a, b) => b - a);
     console.log(stages)
     for (let i = 0; i < stages.length; i++) {
-        if (stageMap[stages[i]]) {
+        if (stages[i] > N) { // N보다 높은 (모두 클리어)
+          stageMap[stages[i]-1] = 0;
+        } else if (stageMap[stages[i]]) {
             stageMap[stages[i]]++
         } else {
             stageMap[stages[i]] = 1;
@@ -12,7 +15,7 @@ const solution = (N, stages) => {
     }
     console.log(stageMap)
 
-    // 역 누적 로직
+    // 역 누적 로직 (나누기 연산을 하기위해서)
     let result = {};
     let keys = Object.keys(stageMap).map(Number).sort((a, b) => a - b);
 
@@ -20,21 +23,20 @@ const solution = (N, stages) => {
         let currentKey = keys[i]
         let sum = 0;
         for (let j = i; j < keys.length; j++) {
-            sum += stageMap[keys[j]];
+            if (currentKey === N) {
+                sum++
+            }
+             sum += stageMap[keys[j]];
         }
         result[currentKey] = sum;
     }
     console.log(result)
 
-    for (const stage in stageMap) {
-        // stage = key
-        // stageMap[stage]; = value
-        // 현재 순회하고있는 key보다 높은 key의 value들을
-        // 다 더해서 key와 다시 매핑해야 한다.
-
-    }
-
-
+    // let arr = []
+    // for (const stage in stageMap) {
+    //     arr.push(stageMap[stage] / result[stage]);
+    // }
+    // console.log(arr)
 }
 
 console.log(solution(5,[2,1,2,6,2,4,3,3]))
