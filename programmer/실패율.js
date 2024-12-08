@@ -11,28 +11,33 @@ const solution = (N, stages) => {
      */
 
     let stageCounts = {}; // 스테이지 별 도달한 사용자 수 저장
-    let result = [];
 
+    // map.put(key, map.getOrDefault(key, 0) + 1 )
     // 스테이지별 사용자 분포 계산
     stages.forEach(stage => {
         if (stage <= N) {
             stageCounts[stage] = (stageCounts[stage] || 0) + 1; // 도달한 사용자 수 누적
+        } else {
+            stageCounts[stage-1] = 0;
         }
     })
-    console.log(stageCounts)
-    let totalPlayers = stages.length; // 전체 플레이어 수
+    let length = stages.length;
+    let resultMap = {};
 
-    for (let i = 1; i <= N; i++) {
-        let failRate = 0;
-
-        if (stageCounts[i]) { // 현재 스테이지에 도달한 사용자가 있는 경우
-            failRate = stageCounts[i] / totalPlayers;
-            totalPlayers -= stageCounts[i] // 다음 스테이지로 도달한 사용자 수 감소
-        }
-        result.push({ stage: i ,failRate});
+    for (const key in stageCounts) {
+        resultMap[key] = (stageCounts[key] / length)
+        length -= stageCounts[key];
     }
-    console.log(result)
+    // 내림차순 정렬
+    let sorted = Object.entries(resultMap).sort((a, b) => b[1] - a[1]);
+    let result = []
+
+    for (const element of sorted) {
+        result.push(+element[0])
+    }
+    return result
+
 }
 
 console.log(solution(5, [2, 1, 2, 6, 2, 4, 3, 3])); // [3, 4, 2, 1, 5]
-// console.log(solution(4, [4, 4, 4, 4, 4]));
+console.log(solution(4, [4, 4, 4, 4, 4]));
