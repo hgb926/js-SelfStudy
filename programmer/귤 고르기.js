@@ -3,6 +3,7 @@ const solution = (k, tangerine) => {
     tangerine.forEach(key => {
         map[key] = (map[key] || 0) + 1;
     })
+    // sum이 k가 될때까지 큰 수 부터 집어넣고, 사용된
     console.log(map)
     // 객체 정렬
 
